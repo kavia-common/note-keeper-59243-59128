@@ -1,75 +1,56 @@
-# Nuxt Minimal Starter
+# Note Keeper - Nuxt 3 Frontend
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A simple notes UI built with Nuxt 3. Features:
+- List notes
+- Create a new note
+- View a note
+- Edit a note
+- Delete a note
 
-## Setup
+The app consumes a REST backend with endpoints:
+- GET    /notes
+- GET    /notes/:id
+- POST   /notes
+- PUT    /notes/:id
+- DELETE /notes/:id
 
-Make sure to install dependencies:
+## Environment
 
-```bash
-# npm
+Set the public API base via `.env`:
+```
+NUXT_PUBLIC_API_BASE=http://localhost:4000
+```
+If you proxy the API through the same origin, you can set:
+```
+NUXT_PUBLIC_API_BASE=/api
+```
+See `.env.example`.
+
+## Development
+
+Install deps and run:
+```
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
-```
-
-## Development Server
-
-Start the development server on `http://localhost:3000`:
-
-```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
+The app runs at http://localhost:3000
 
-## Production
+## Build
 
-Build the application for production:
-
-```bash
-# npm
+```
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
 npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Routes
+- /                   -> list notes
+- /notes/new          -> create note
+- /notes/:id          -> view a note
+- /notes/:id/edit     -> edit a note
+- /notes              -> redirects to /
+
+## Notes
+
+- Basic styling is included inline in `app.vue` to avoid extra dependencies.
+- API base URL is configured via `runtimeConfig.public.apiBase` (see `nuxt.config.ts`).
+- API integration is implemented in `composables/useNotesApi.ts`.
